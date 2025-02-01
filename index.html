@@ -70,29 +70,84 @@
             0% { transform: translateY(0) scale(1); opacity: 1; }
             100% { transform: translateY(-100vh) scale(0.5); opacity: 0; }
         }
+ <!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เกมคำถามของเค้า 🎮</title>
+    <style>
+        body {
+            background: #ffccff;
+            margin: 0;
+            font-family: 'Itim', cursive;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .game-container {
+            text-align: center;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            width: 400px;
+        }
+        h1 {
+            color: white;
+            font-size: 2rem;
+        }
+        #question {
+            margin: 20px 0;
+            font-size: 1.5rem;
+            color: white;
+        }
+        .option {
+            background-color: #ff66b2;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            margin: 10px;
+            transition: 0.2s;
+        }
+        .option:hover {
+            background-color: #ff3385;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 1.5rem;
+            color: yellow;
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>💜 เค้ามีอะไรจะมาให้เธอเล่น 💜</h1>
-        <button class="btn" onclick="startGame()">🎮 เริ่มเล่นเกม</button>
+    <div class="game-container">
+        <h1>เกมคำถามของเค้า!</h1>
+        <div id="question">คำถาม: 2 + 2 เท่ากับเท่าไหร่?</div>
+        <button class="option" onclick="checkAnswer('A')">A. 3</button>
+        <button class="option" onclick="checkAnswer('B')">B. 4</button>
+        <button class="option" onclick="checkAnswer('C')">C. 5</button>
+        <button class="option" onclick="checkAnswer('D')">D. 6</button>
+        <div id="result" class="result"></div>
     </div>
-    <div class="hearts" id="heartContainer"></div>
 
     <script>
-        function startGame() {
-            location.href = 'game.html';
-        }
+        function checkAnswer(selectedOption) {
+            let correctAnswer = 'B'; // คำตอบที่ถูกต้อง
+            let resultMessage = '';
 
-        function createHeart() {
-            const heart = document.createElement('div');
-            heart.classList.add('heart');
-            heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.animationDuration = Math.random() * 3 + 2 + 's';
-            document.getElementById('heartContainer').appendChild(heart);
-            setTimeout(() => heart.remove(), 5000);
+            if (selectedOption === correctAnswer) {
+                resultMessage = 'ตอบถูกต้อง! 🎉';
+            } else {
+                resultMessage = 'ตอบผิด! ลองใหม่อีกครั้ง! 💔';
+            }
+
+            document.getElementById('result').innerText = resultMessage;
         }
-        setInterval(createHeart, 300);
     </script>
 </body>
 </html>
